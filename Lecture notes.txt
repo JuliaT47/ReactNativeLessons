@@ -1,0 +1,86 @@
+To start the app
+
+Run emulator with the minimum apps running on Mac, cant manage the volume.
+In VScode
+1. in one terminal window 
+cd ~/Library/Android/sdk/emulator 
+./emulator -avd Pixel_8_API_34 to run emulator 
+
+2. in the second terminal window
+echo $PATH
+Verify that /Users/julia/Library/Android/sdk/platform-tools and /Users/julia/Library/Android/sdk/emulator are listed in the output.
+
+3. echo $ANDROID_HOME
+It should now output /Users/julia/Library/Android/sdk.
+cd $ANDROID_HOME 
+ls
+
+zsh to get to the correct repository
+4. npx react-native start
+5. npx react-native run-android
+
+nano ~/.zshrc to open file with all the paths
+source ~/.zshrc to save the changes
+npx react-native doctor to run diagnostics
+
+What we want the paths to be:
+export ANDROID_HOME=/Users/julia/Library/Android/sdk  (on 1TBDrive at the moment)
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/emulator
+
+Lecture 2
+React Native Components
+Looked at the examples from https://reactnative.dev/docs/components-and-apis
+everything we used is on the website
+
+Lecture 3
+https://github.com/react-native-linear-gradient/react-native-linear-gradient
+https://github.com/software-mansion/react-native-svg?tab=readme-ov-file
+
+Lecture 4
+https://reactnavigation.org/docs/getting-started
+inside cd reactnative npm install @react-navigation/native
+npm install react-native-screens react-native-safe-area-context
+
+react-native-screens package requires one additional configuration step to properly work on Android devices. 
+Edit MainActivity.kt or MainActivity.java file which is located under 
+android/app/src/main/java/<your package name>/.
+Add the highlighted code to the body of MainActivity class:
+Kotlin
+class MainActivity: ReactActivity() {
+  // ...
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(null)
+  }
+  // ...
+}
+import android.os.Bundle; in the same kt document
+
+Then additionally we install 
+https://reactnavigation.org/docs/bottom-tab-navigator
+npm install @react-navigation/bottom-tabs 
+for separate parts of the library, so that we do not 
+install the whole library at once when we don't need to
+
+https://www.npmjs.com/package/@fortawesome/react-native-fontawesome#documentation 
+
+Lecture 5
+library for calendars
+https://www.npmjs.com/package/react-native-calendars/v/1.1286.0
+
+Lecture 6
+When the system not responding in emulator error, add more memory 
+to the emulator device, in edit on the device.
+
+https://www.npmjs.com/package/react-native-axios
+Day of war done
+Api stats and day info done, calendar works. 
+
+Lecture 7
+Loader added to header page, day info page.
+
+https://console.firebase.google.com/u/0/
+https://rnfirebase.io/messaging/usage
+https://github.com/zo0r/react-native-push-notification
+https://notifee.app more automated then react-native-push-notification, easier to install
